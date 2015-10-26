@@ -43,7 +43,7 @@ class Flash
     public static function show($name, $text)
     {
         if (isset($_SERVER['SERVER_SOFTWARE'])) {
-            echo '<div class="alert alert-', $name, ' flash">', $text, '</div>', PHP_EOL;
+            echo '<div class="alert alert-', $name, ' ">', $text, '</div>', PHP_EOL;
         } else {
             echo $name, ': ', strip_tags($text), PHP_EOL;
         }
@@ -56,7 +56,7 @@ class Flash
      */
     public static function error($text)
     {
-        return self::show('error', $text);
+        return self::show('danger', $text);
     }
 
     /**

@@ -4,3 +4,4 @@ Fácil, rápido y en español
 Template admin con bootstrap integrado a el framework kumbiaphp
 @jaimeirazabal
 hecho por jaimeirazabal1@gmail.com
+
