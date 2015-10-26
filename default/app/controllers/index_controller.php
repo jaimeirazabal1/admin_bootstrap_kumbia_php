@@ -65,6 +65,16 @@ class IndexController extends AppController
                 Flash::error("No se Creó el Usuario");
             }
         }
+
+    }
+    public function get_empresas(){
+        $tags = Load::model("usuarios")->find("columns: empresa","group: empresa");
+        $array_tags = array();
+        foreach ($tags as $key => $value) {
+            $array_tags[] = $value->empresa;
+        }
+        View::select(null,"json");
+        $this->data = $array_tags;  
     }
     public function logout(){
         Auth::destroy_identity();

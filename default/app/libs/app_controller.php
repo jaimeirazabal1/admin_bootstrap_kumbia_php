@@ -54,20 +54,22 @@ class AppController extends Controller
 			$role = Auth::get("rol");
 			if (isset($roles_permisos[$role])) {
 				$controladores = $roles_permisos[$role];
-				if (isset($controladores[$controlador_actual])) {
-					$acciones = $controladores[$controlador_actual];
+				if (isset($controladores[$controlador_actual]) or $role == "A") {
+					$acciones = isset($controladores[$controlador_actual]) ? $controladores[$controlador_actual] : array();
 				
-					if (in_array($accion_actual, $acciones)) {
+					if (in_array($accion_actual, $acciones) or $role == "A") {
 						/*aqui pasa con permiso*/
 					}else{
 						Flash::error("Permiso Denegado!...");
 						Router::redirect($rutas['default']);						
 					}
 				}else{
+				
 					Flash::error("Permiso Denegado!....");
 					Router::redirect($rutas['default']);						
 				}
 			}else{
+				
 				Flash::warning("Permiso denegado, el rol no se encuentra registrado");
 				Router::redirect($rutas['default']);
 			}

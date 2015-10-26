@@ -1,4 +1,25 @@
     <div class="container">
+<?php echo Tag::css("jquery-ui") ?>
+
+<?php echo Tag::js("jquery/jquery.min") ?>
+<?php echo Tag::js("jquery/jquery-ui") ?>
+<script type="text/javascript">
+$(document).ready(function(){
+	var availableTags;
+  	$.ajax({
+  		url:"get_empresas",
+  		async:false,
+  		success:function(r){
+  			availableTags = r;
+  			console.log(availableTags)
+
+  		}
+  	})
+  	$("#tags").autocomplete({
+      	source: availableTags
+    });
+})
+</script>
     <?php View::content() ?>
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -17,6 +38,9 @@
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Repeat-Password" name="usuarios[clave2]" type="password" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Empresa" name="usuarios[empresa]" id="tags" type="text" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>
