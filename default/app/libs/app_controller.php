@@ -40,7 +40,7 @@ class AppController extends Controller
 				"test" => array()
 			),
 			"U"=>array(
-				"index" => array()
+				"index" => array("index","login","logout")
 			),
 			"A" => array(
 				"*"
@@ -56,6 +56,7 @@ class AppController extends Controller
 				$controladores = $roles_permisos[$role];
 				if (isset($controladores[$controlador_actual])) {
 					$acciones = $controladores[$controlador_actual];
+				
 					if (in_array($accion_actual, $acciones)) {
 						/*aqui pasa con permiso*/
 					}else{
