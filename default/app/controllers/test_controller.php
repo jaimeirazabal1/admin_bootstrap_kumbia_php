@@ -1,7 +1,7 @@
 <?php 
 class TestController extends AppController{
 	public function index(){
-		View::template("login");
+		
 		Flash::info("Estamos en la acción {$this->action_name}");
 	}
  

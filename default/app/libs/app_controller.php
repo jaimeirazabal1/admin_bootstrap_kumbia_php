@@ -23,17 +23,18 @@ class AppController extends Controller
 	{
 		$this->kumbia_title = "Arrocera";
 		if(Auth::is_valid()) $this->userRol = Auth::get("rol");
-		
+
 		$this->acl = new Acl();
+	
 		//Se agregan los roles
 		$this->acl->add_role(new AclRole("")); // Visitantes
 		$this->acl->add_role(new AclRole("A")); // Administradores
 		$this->acl->add_role(new AclRole("U")); // Usuarios
-		
+
 		//Se agregan los recursos
 		$this->acl->add_resource(new AclResource("index"), "index");
 		$this->acl->add_resource(new AclResource("test"), "index");
-		
+
 		//Se crean los permisos
 		 // Inicio
 		$this->acl->allow("", "index", array("index"));
@@ -44,7 +45,7 @@ class AppController extends Controller
 
 	final protected function finalize()
 	{
-		
+
 	}
 
 }
