@@ -44,7 +44,7 @@ class IndexController extends AppController
             $new_user = new Usuarios(Input::post("usuarios"));
             /*usuario por default*/
             $new_user->clave = $new_user->cript($new_user->clave);
-            $new_user->rol = "U";
+            $new_user->rol = "C";
             if ($new_user->save()) {
                 Flash::valid("Usuario Creado!");
             }else{
@@ -71,4 +71,5 @@ class IndexController extends AppController
     public function typography(){
     	
     }
+
 }

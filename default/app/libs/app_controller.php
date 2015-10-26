@@ -22,30 +22,78 @@ class AppController extends Controller
 	final protected function initialize()
 	{
 		$this->kumbia_title = "Arrocera";
-		if(Auth::is_valid()) $this->userRol = Auth::get("rol");
 
-		$this->acl = new Acl();
-	
-		//Se agregan los roles
-		$this->acl->add_role(new AclRole("")); // Visitantes
-		$this->acl->add_role(new AclRole("A")); // Administradores
-		$this->acl->add_role(new AclRole("U")); // Usuarios
+		/*--------------------------------------------------*/
+		
+		$controlador_actual = Router::get("controller");
+		$accion_actual = Router::get("action");
+		$ruta_actual = $controlador_actual."/".$accion_actual;
 
-		//Se agregan los recursos
-		$this->acl->add_resource(new AclResource("index"), "index");
-		$this->acl->add_resource(new AclResource("test"), "index");
+		$rutas = array(
+			"default" => "index/login"
+		);
 
-		//Se crean los permisos
-		 // Inicio
-		$this->acl->allow("", "index", array("index"));
-		$this->acl->allow("U", "index", array("index"));
-		 // Test
-		$this->acl->allow("U", "test", array("index"));
+		/*aqui se configurar los controladores y las vistas que ven los usuarios*/
+		$roles_permisos = array(
+			"C"=>array(
+				"index" => array("index","logout","login","flot"),
+				"test" => array()
+			),
+			"U"=>array(
+				"index" => array()
+			),
+			"A" => array(
+				"*"
+			)
+
+		);
+
+		/*--------------------------------------------------------------------*/
+
+		if(Auth::is_valid()){
+			$role = Auth::get("rol");
+			if (isset($roles_permisos[$role])) {
+				$controladores = $roles_permisos[$role];
+				if (isset($controladores[$controlador_actual])) {
+					$acciones = $controladores[$controlador_actual];
+					if (in_array($accion_actual, $acciones)) {
+						/*aqui pasa con permiso*/
+					}else{
+						Flash::error("Permiso Denegado!...");
+						Router::redirect($rutas['default']);						
+					}
+				}else{
+					Flash::error("Permiso Denegado!....");
+					Router::redirect($rutas['default']);						
+				}
+			}else{
+				Flash::warning("Permiso denegado, el rol no se encuentra registrado");
+				Router::redirect($rutas['default']);
+			}
+		}else{
+			$vistas = $roles_permisos["C"];
+			if (isset($vistas[$controlador_actual])) {
+				$acciones = $vistas[$controlador_actual];
+				if (in_array($accion_actual, $acciones)) {
+					/*aqui pasa con permiso*/
+				}else{
+					Flash::error("Permiso Denegado!.");
+					Router::redirect($rutas['default']);
+				}
+			}else{
+				Flash::error("Permiso Denegado!..");
+				Router::redirect($rutas['default']);				
+			}
+		}
+
+		/*----------------------------------------------------*/
+
 	}
 
 	final protected function finalize()
 	{
 
 	}
+	
 
 }
