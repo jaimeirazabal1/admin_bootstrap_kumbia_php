@@ -17,7 +17,6 @@
     <link href="<?php echo PUBLIC_PATH ?>/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="<?php echo PUBLIC_PATH ?>/bower_components/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="<?php echo PUBLIC_PATH ?>/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -42,19 +41,18 @@
     <!-- Morris Charts JavaScript -->
 
     <!-- Custom Theme JavaScript -->
+    <script src="<?php echo PUBLIC_PATH ?>/bower_components/raphael/raphael-min.js"></script>
     <script src="<?php echo PUBLIC_PATH ?>/dist/js/sb-admin-2.js"></script>
 
   </head>
   <body>
       <div id="wrapper">
-        <?php View::partial("top_navbar",null,array("kumbia_title"=>$kumbia_title)) ?>
+        <!--<?php// View::partial("top_navbar",null,array("kumbia_title"=>$kumbia_title)) ?>-->
+        <?php View::partial("mi_nav",null,array("kumbia_title"=>$kumbia_title)) ?>
         
         <?php View::content() ?>
 
       </div>
       
-    <script src="<?php echo PUBLIC_PATH ?>/bower_components/raphael/raphael-min.js"></script>
-    <script src="<?php echo PUBLIC_PATH ?>/bower_components/morrisjs/morris.min.js"></script>
-    <script src="<?php echo PUBLIC_PATH ?>/javascript/morris-data.js"></script>
   </body>
 </html>

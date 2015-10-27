@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.0.10.7
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 26-10-2015 a las 16:02:37
--- Versión del servidor: 5.5.44-0ubuntu0.14.04.1
--- Versión de PHP: 5.5.9-1ubuntu4.11
+-- Servidor: localhost:3306
+-- Tiempo de generación: 26-10-2015 a las 21:23:27
+-- Versión del servidor: 5.5.45-cll-lve
+-- Versión de PHP: 5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `admin_bootstrap_kumbia_php`
+-- Base de datos: `jaimeira_tp`
 --
 
 -- --------------------------------------------------------
@@ -39,15 +39,23 @@ CREATE TABLE IF NOT EXISTS `documento` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo`
+-- Estructura de tabla para la tabla `tipos`
 --
 
-CREATE TABLE IF NOT EXISTS `tipo` (
+CREATE TABLE IF NOT EXISTS `tipos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `descripcion` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `tipos`
+--
+
+INSERT INTO `tipos` (`id`, `tipo`, `descripcion`) VALUES
+(1, 'Tipo de Documento 11', 'la descripcion del tipo de documento 1'),
+(2, 'Tipo de Documento 2', 'la descripcion del tipo de documento 2');
 
 -- --------------------------------------------------------
 
@@ -59,16 +67,19 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `clave` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `rol` enum('A','U','C') COLLATE utf8_unicode_ci NOT NULL,
+  `empresa` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `rol` enum('A','U','C','I') COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `clave`, `nombre`, `rol`) VALUES
-(1, '7d3ff5e583a1727c07bd911d427b514b', 'jaimeirazabal1', 'U');
+INSERT INTO `usuarios` (`id`, `clave`, `nombre`, `empresa`, `rol`) VALUES
+(1, '2c6d6bb8007d7e7837516f26f1d032bf', 'jaimeirazabal1', 'Empresa 1', 'A'),
+(2, '25f9e794323b453885f5181f1b624d0b', 'Pepito', 'Empresa 2', 'C'),
+(3, 'ffc150a160d37e92012c196b6af4160d', 'victor_empresa', 'Empresa Victor', 'C');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

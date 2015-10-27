@@ -1,5 +1,6 @@
     <div class="container">
 <?php echo Tag::css("jquery-ui") ?>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <?php echo Tag::js("jquery/jquery.min") ?>
 <?php echo Tag::js("jquery/jquery-ui") ?>
@@ -15,7 +16,8 @@ $(document).ready(function(){
 
   		}
   	})
-  	$("#tags").autocomplete({
+    var box = $("#tags");
+  	box.autocomplete({
       	source: availableTags
     });
 })
@@ -48,7 +50,7 @@ $(document).ready(function(){
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <?php echo Form::submit("Login",'class="btn btn-lg btn-success btn-block"') ?>
+                                <?php echo Form::submit("Create",'class="btn btn-lg btn-success btn-block"') ?>
                                 <hr>
                                 <?php echo Html::link("index/login","Login Page") ?>
                             </fieldset>

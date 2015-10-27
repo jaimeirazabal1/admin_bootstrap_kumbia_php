@@ -10,7 +10,7 @@ class IndexController extends AppController
 
     public function index()
     {
-        
+        View::select("welcome");
     }
     public function blank(){
 
@@ -53,6 +53,8 @@ class IndexController extends AppController
             $post_usuarios = Input::post("usuarios");
             if ($post_usuarios['clave'] != $post_usuarios['clave2']) {
                 Flash::error("Las Claves no coinciden");
+                Router::redirect("usuarios/");
+                
                 return;
             }
             $new_user = new Usuarios(Input::post("usuarios"));
@@ -61,8 +63,11 @@ class IndexController extends AppController
             $new_user->rol = "C";
             if ($new_user->save()) {
                 Flash::valid("Usuario Creado!");
+                Router::redirect("usuarios/");
             }else{
                 Flash::error("No se Creó el Usuario");
+                Router::redirect("usuarios/");
+
             }
         }
 

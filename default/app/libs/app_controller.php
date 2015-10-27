@@ -36,7 +36,7 @@ class AppController extends Controller
 		/*aqui se configurar los controladores y las vistas que ven los usuarios*/
 		$roles_permisos = array(
 			"C"=>array(
-				"index" => array("index","logout","login","flot"),
+				"index" => array("","logout","login","flot"),
 				"test" => array()
 			),
 			"U"=>array(
