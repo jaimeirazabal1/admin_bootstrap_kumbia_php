@@ -21,7 +21,7 @@ class AppController extends Controller
 
 	final protected function initialize()
 	{
-		$this->kumbia_title = "Arrocera";
+		$this->kumbia_title = "Cristal";
 
 		/*--------------------------------------------------*/
 		
